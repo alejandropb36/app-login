@@ -20,8 +20,12 @@ export class LoginComponent {
     password: new FormControl('', [Validators.required]),
   });
 
+  error: boolean = false;
+  notFound: boolean = false;
+
   onSubmit(): void {
     const userLogin = this.loginForm.value as LoginUser;
+    this.error = this.notFound = false;
 
     this.loginService.login(userLogin).subscribe({
       next: (response) => {
@@ -30,6 +34,12 @@ export class LoginComponent {
       },
       error: (err) => {
         console.error(err);
+        if(err.status === 404) {
+          this.notFound = true;
+        } else {
+          this.error = true;
+        }
+
       }
     })
   }

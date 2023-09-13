@@ -1,6 +1,13 @@
 <main class="form-signin">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <h1 class="h3 mb-3 fw-normal">Inicio de sesion</h1>
+      <div class="alert alert-danger" role="alert" *ngIf="error">
+        Credenciales incorrectas
+      </div>
+
+      <div class="alert alert-info" role="alert" *ngIf="notFound">
+        Tu usuario no existe por favor registrate
+      </div>
   
       <div class="form-floating">
         <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="email">
