@@ -19,16 +19,27 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.loginService.getProfile().subscribe({
       next: (response) => {
-        console.log(response);
+        this.user = response.user;
       },
       error: (err) => {
-        debugger;
         console.error(err);
-        this.router.navigate(['/login']);
-
+        if(err.status === 401 || err.status === 403) {
+          this.router.navigate(['/login']);
+        }
       }
-    })
+    });
   }
 
-
+  logout(): void {
+    debugger;
+    this.loginService.logout().subscribe({
+      next: (response) => {
+        console.log(response);
+        this.router.navigate(['/login']);
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    });
+  }
 }

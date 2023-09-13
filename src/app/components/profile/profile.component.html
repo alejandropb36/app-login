@@ -1,1 +1,12 @@
-<p>profile works!</p>
+<div class="text-center card">
+    <div class="card-body">
+        
+        <h5 class="card-title">{{user?.name}}</h5>
+
+        <p class="card-text">{{user?.email}}</p>
+        
+        <p class="card-text">Bienvenido a la aplicacion</p>
+
+        <button (click)="logout()" class="btn btn-primary">Cerrar sesion</button>
+    </div>
+</div>
