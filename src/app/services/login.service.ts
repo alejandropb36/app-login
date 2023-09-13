@@ -12,7 +12,7 @@ export class LoginService {
   private baseUrl: string;
 
   constructor(private readonly httpClient: HttpClient) {
-    this.baseUrl = 'http://localhost:4000'
+    this.baseUrl = 'https://api-login.alejandropb.net'
   }
 
   getProfile(): Observable<ProfileResponse>{
