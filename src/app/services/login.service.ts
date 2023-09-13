@@ -3,6 +3,7 @@ import { ProfileResponse } from '../models/profile.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LoginResponse, LoginUser } from '../models/login.model';
+import { RegisterUser, RegisterUserResponse } from '../models/register.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,23 +23,19 @@ export class LoginService {
 
   login(user: LoginUser): Observable<LoginResponse> {
     const url = `${this.baseUrl}/login`;
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
 
-    return this.httpClient.post<LoginResponse>(url, user, {
-      headers
-    });
+    return this.httpClient.post<LoginResponse>(url, user);
   }
 
   logout(): Observable<LoginResponse> {
     const url = `${this.baseUrl}/logout`;
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
 
-    return this.httpClient.post<LoginResponse>(url, {
-      headers
-    });
+    return this.httpClient.post<LoginResponse>(url, {});
+  }
+
+  register(user: RegisterUser): Observable<RegisterUserResponse> {
+    const url = `${this.baseUrl}/register`;
+
+    return this.httpClient.post<RegisterUserResponse>(url, user);
   }
 }
