@@ -21,12 +21,11 @@ export class LoginComponent {
   });
 
   onSubmit(): void {
-    console.log({value: this.loginForm.value, valid: this.loginForm.valid});
-
     const userLogin = this.loginForm.value as LoginUser;
 
     this.loginService.login(userLogin).subscribe({
       next: (response) => {
+        this.loginService.setAuth(true);
         this.router.navigate(['/profile']);
       },
       error: (err) => {

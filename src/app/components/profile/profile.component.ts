@@ -24,6 +24,7 @@ export class ProfileComponent implements OnInit {
       error: (err) => {
         console.error(err);
         if(err.status === 401 || err.status === 403) {
+          this.loginService.setAuth(true);
           this.router.navigate(['/login']);
         }
       }
@@ -31,10 +32,9 @@ export class ProfileComponent implements OnInit {
   }
 
   logout(): void {
-    debugger;
     this.loginService.logout().subscribe({
       next: (response) => {
-        console.log(response);
+        this.loginService.setAuth(false);
         this.router.navigate(['/login']);
       },
       error: (err) => {

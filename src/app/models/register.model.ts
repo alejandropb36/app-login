@@ -6,5 +6,5 @@ export interface RegisterUser extends User, LoginUser {
 }
 
 export interface RegisterUserResponse {
-
+    
 }

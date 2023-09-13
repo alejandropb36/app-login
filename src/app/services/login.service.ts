@@ -38,4 +38,18 @@ export class LoginService {
 
     return this.httpClient.post<RegisterUserResponse>(url, user);
   }
+
+  setAuth(auth: boolean): void {
+    localStorage.setItem('isAuthenticated', JSON.stringify(auth));
+  }
+
+  getAuth(): boolean {
+    const isAuthenticatedLocalStorage = localStorage.getItem('isAuthenticated');
+    let isAuthenticated = false;
+    if(isAuthenticatedLocalStorage !== null) {
+      isAuthenticated = isAuthenticatedLocalStorage === 'true' ? true : false;
+    }
+
+    return isAuthenticated
+  }
 }
